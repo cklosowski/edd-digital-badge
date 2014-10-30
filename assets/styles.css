@@ -1,0 +1,18 @@
+.edd-db-badge {
+	font-size: small;
+	background-color: #ccc;
+	color: #666;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+
+.edd-db-checkout-cell {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	text-align: center !important;
+	width: auto;
+}
+
+.edd-db-checkout-cell .edd-db-badge {
+	margin-left: 0;
+}
