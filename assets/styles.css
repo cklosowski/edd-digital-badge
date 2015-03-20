@@ -19,3 +19,7 @@
 .edd-db-checkout-cell .edd-db-badge {
 	margin-left: 0;
 }
+
+.widget_edd_cart_widget .edd-db-badge {
+	display: none;
+}
