@@ -2,7 +2,7 @@
 /*
 Plugin Name: Easy Digital Downloads - Digital Badge
 Plugin URI: https://easydigitaldownloads.com
-Description: Identify products as digital
+Description: Identify products as digital and subscription
 Version: 1.0
 Author: Chris Klosowski / Easy Digital Downloads
 Author URI: https://easydigitaldownloads.com
@@ -132,7 +132,6 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Add settings
 		 *
 		 * @access      public
-		 *
 		 * @since       1.0
 		 * @param       array $settings The existing EDD settings array
 		 * @return      array The modified EDD settings array
@@ -167,24 +166,27 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 			return array_merge( $settings, $new_settings );
 		}
 
-/**
- * The main function responsible for returning the one true EDD_Digital_Badge
- * instance to functions everywhere
- *
- * @since       1.0
- * @return      \EDD_Digital_Badge The one true EDD_Digital_Badge
- */
-function EDD_Digital_Badge_load() {
-	if( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-
-		$activation = new EDD_Extension_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-		$activation = $activation->run();
-		return EDD_Digital_Badge::instance();
-	} else {
-		return EDD_Digital_Badge::instance();
 	}
-}
 
-add_action( 'plugins_loaded', 'EDD_Digital_Badge_load' );
+
+	/**
+	 * The main function responsible for returning the one true EDD_Digital_Badge
+	 * instance to functions everywhere
+	 *
+	 * @since       1.0
+	 * @return      \EDD_Digital_Badge The one true EDD_Digital_Badge
+	 */
+	function EDD_Digital_Badge_load() {
+		if( ! class_exists( 'Easy_Digital_Downloads' ) ) {
+
+			$activation = new EDD_Extension_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
+			$activation = $activation->run();
+			return EDD_Digital_Badge::instance();
+		} else {
+			return EDD_Digital_Badge::instance();
+		}
+	}
+
+	add_action( 'plugins_loaded', 'EDD_Digital_Badge_load' );
 
 } // End if class_exists check
