@@ -1,9 +1,12 @@
 .edd-db-badge {
 	font-size: small;
-	background-color: #ccc;
+	background-color: #efefef;
 	color: #666;
 	vertical-align: middle;
 	margin-left: 15px;
+	text-decoration: none;
+	cursor: default;
+	padding: 2px 3px;
 }
 
 .edd-db-checkout-cell {
