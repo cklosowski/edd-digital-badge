@@ -26,7 +26,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * @since       1.0.0
 		 */
 		private static $instance;
-		
+
 
 		/**
 		 * Get active instance
@@ -146,28 +146,38 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 				),
 				array(
 					'id'    => 'EDD_Digital_Badge_badge_text',
-					'name'  => __( 'Badge Text', 'edd-db-txt' ),
+					'name'  => __( 'Download Badge Text', 'edd-db-txt' ),
 					'desc'  => __( 'The text string you want to show by products marked as digital', 'edd-db-txt' ),
 					'type'  => 'text',
 					'std'   => edd_db_get_badge_string()
 				)
 			);
 
+			if ( class_exists( 'EDD_Recurring' ) ) {
+				$new_settings[] = array(
+					'id'    => 'EDD_Digital_Badge_subscription_text',
+					'name'  => __( 'Subscription Badge Text', 'edd-db-txt' ),
+					'desc'  => __( 'The text string you want to show by products marked as subscriptions', 'edd-db-txt' ),
+					'type'  => 'text',
+					'std'   => edd_db_get_subscription_string()
+				);
+			}
+
 			return array_merge( $settings, $new_settings );
 		}
-		
-		
+
+
 	/*
 	 * Activation function fires when the plugin is activated.
 	 *
 	 * This function is fired when the activation hook is called by WordPress,
-	 * 
+	 *
 	 */
 	public static function activation() {
 		// No activation items at this time
 	}
-		
-		
+
+
 	}
 
 

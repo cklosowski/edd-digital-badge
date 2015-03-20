@@ -6,19 +6,30 @@ if ( ! defined( 'ABSPATH' ) )
 function edd_db_register_metabox_input( $fields ) {
 	$fields[] = '_edd_db_display_badge';
 
+	if ( class_exists( 'EDD_Recurring' ) ) {
+		$fields[] = '_edd_db_display_subscription_badge';
+	}
+
 	return $fields;
 }
 add_filter( 'edd_metabox_fields_save', 'edd_db_register_metabox_input', 10, 1 );
 
 function edd_db_display_metbox_input( $post_id ) {
-	if ( empty( $post_id ) )
+	if ( empty( $post_id ) ) {
 		return;
+	}
 
 	$post_id = absint( $post_id );
 	$current_setting = get_post_meta( $post_id, '_edd_db_display_badge', true );
-	$output  = '<p><strong>' . __( 'Digital Badge', 'edd-db-txt' ) . '</strong></p>';
+	$output  = '<p><strong>' . __( 'Product Badges', 'edd-db-txt' ) . '</strong></p>';
 	$output .= '<p><input' . checked( '1', $current_setting, false ) . ' type="checkbox" id="_edd_db_display_badge" name="_edd_db_display_badge" value="1" />';
 	$output .= '<label for="_edd_db_display_badge">' . __( 'Display an indication that the product is fulfilled via download', 'edd-db-txt' ) . '</label></p>';
+
+	if ( class_exists( 'EDD_Recurring' ) && EDD_Recurring::is_recurring( $post_id ) ) {
+		$current_setting = get_post_meta( $post_id, '_edd_db_display_subscription_badge', true );
+		$output .= '<p><input' . checked( '1', $current_setting, false ) . ' type="checkbox" id="_edd_db_display_subscription_badge" name="_edd_db_display_subscription_badge" value="1" />';
+		$output .= '<label for="_edd_db_display_subscription_badge">' . __( 'Display an indication that the product is a subscription', 'edd-db-txt' ) . '</label></p>';
+	}
 
 	echo $output;
 }
@@ -36,9 +47,22 @@ function edd_db_get_badge_string() {
 	return apply_filters( 'edd_db_default_badge_string', $badge_text );
 }
 
+function edd_db_subscription_string() {
+	$string = '<span class="edd-db-badge">' . edd_db_get_subscription_string() . '</span>';
+
+	return apply_filters( 'edd_db_badge_string', $string );
+}
+
+function edd_db_get_subscription_string() {
+	$badge_text = edd_get_option( 'EDD_Digital_Badge_subscription_text', '[' . __( 'subscription', 'edd-db-txt' ) . ']' );
+
+	return apply_filters( 'edd_db_default_subscription_string', $badge_text );
+}
+
 function edd_db_is_digital_download( $download_id = 0 ) {
-	if ( empty( $download_id ) )
+	if ( empty( $download_id ) ) {
 		return false;
+	}
 
 	$display_badge = get_post_meta( $download_id, '_edd_db_display_badge', true );
 
@@ -47,26 +71,65 @@ function edd_db_is_digital_download( $download_id = 0 ) {
 	return apply_filters( 'edd_db_is_digital_download', $is_digital, $download_id );
 }
 
+function edd_db_is_subscription_download( $download_id = 0 ) {
+	if ( empty( $download_id ) ) {
+		return false;
+	}
+
+	$display_badge = get_post_meta( $download_id, '_edd_db_display_subscription_badge', true );
+
+	$is_subscription = $display_badge === '1' ? true : false;
+
+	return apply_filters( 'edd_db_is_subscription_download', $is_subscription, $download_id );
+}
+
 function edd_db_append_title( $title, $post_id ) {
-	if ( 'download' !== get_post_type( $post_id ) || edd_is_checkout() )
+	if ( is_admin() || 'download' !== get_post_type( $post_id ) || edd_is_checkout() ) {
 		return $title;
+	}
 
-	if ( ! edd_db_is_digital_download( $post_id ) )
-		return $title;
+	$show_badges = apply_filters( 'edd_db_apply_badges', true );
 
-	$digital_string = edd_db_get_badge_string();
-	$badge = edd_db_badge_string();
+	if ( ! $show_badges ) { return $title; }
 
-	$string = $title . $badge;
+	if ( edd_db_is_digital_download( $post_id ) ) {
+		$badge  = edd_db_badge_string();
+		$title .= $badge;
+	}
 
-	return $string;
+	if ( edd_db_is_subscription_download( $post_id ) ) {
+		$badge  = edd_db_subscription_string();
+		$title .= $badge;
+	}
+
+	return $title;
 }
 add_filter( 'the_title', 'edd_db_append_title', 10, 2 );
 
 function edd_db_add_badge_column_checkout( $item ) {
-	if ( false === edd_db_is_digital_download( $item['id'] ) )
-		return;
+	$is_digital      = edd_db_is_digital_download( $item['id'] );
+	$is_subscription = edd_db_is_subscription_download( $item['id'] );
 
-	echo '<td class="edd-db-checkout-cell">' . edd_db_badge_string() . '</td>';
+	if ( ! $is_digital && ! $is_subscription ) {
+		return;
+	}
+
+	$output  = '<td class="edd-db-checkout-cell">';
+	if ( $is_digital ) {
+		$output .= edd_db_badge_string();
+	}
+
+	if ( $is_subscription ) {
+		$output .= edd_db_subscription_string();
+	}
+	$output .= '</td>';
+
+	echo $output;
 }
-add_action( 'edd_checkout_table_body_last', 'edd_db_add_badge_column_checkout', 10, 1 );
+add_action( 'edd_checkout_table_body_last', 'edd_db_add_badge_column_checkout', 99, 1 );
+
+function edd_db_add_badge_column_checkout_header() {
+	echo '<th class="edd_cart_badges">' . __( 'Notes', 'edd' ) . '</th>';
+}
+add_action( 'edd_checkout_table_header_last', 'edd_db_add_badge_column_checkout_header', 99 );
+
