@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Easy Digital Downloads - Digital Badge
-Plugin URI: http://filament-studios.com
+Plugin URI: https://easydigitaldownloads.com
 Description: Identify products as digital
 Version: 1.0
-Author: Chris Klosowski
-Author URI: http://filament-studios.com
+Author: Chris Klosowski / Easy Digital Downloads
+Author URI: https://easydigitaldownloads.com
 Text Domain: edd-db-txt
 */
 
@@ -17,13 +17,13 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 	/**
 	 * Main EDD_Digital_Badge class
 	 *
-	 * @since       1.0.0
+	 * @since       1.0
 	 */
 	class EDD_Digital_Badge {
 
 		/**
 		 * @var         EDD_Digital_Badge $instance The one true EDD_Digital_Badge
-		 * @since       1.0.0
+		 * @since       1.0
 		 */
 		private static $instance;
 
@@ -32,7 +32,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Get active instance
 		 *
 		 * @access      public
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      object self::$instance The one true EDD_Digital_Badge
 		 */
 		public static function instance() {
@@ -52,7 +52,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Setup plugin constants
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		private function setup_constants() {
@@ -71,7 +71,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Include necessary files
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		private function includes() {
@@ -85,7 +85,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Run action and filter hooks
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 *
 		 */
@@ -99,7 +99,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Internationalization
 		 *
 		 * @access      public
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		public function load_textdomain() {
@@ -132,7 +132,8 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 		 * Add settings
 		 *
 		 * @access      public
-		 * @since       1.0.0
+		 *
+		 * @since       1.0
 		 * @param       array $settings The existing EDD settings array
 		 * @return      array The modified EDD settings array
 		 */
@@ -166,26 +167,11 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 			return array_merge( $settings, $new_settings );
 		}
 
-
-	/*
-	 * Activation function fires when the plugin is activated.
-	 *
-	 * This function is fired when the activation hook is called by WordPress,
-	 *
-	 */
-	public static function activation() {
-		// No activation items at this time
-	}
-
-
-	}
-
-
 /**
  * The main function responsible for returning the one true EDD_Digital_Badge
  * instance to functions everywhere
  *
- * @since       1.0.0
+ * @since       1.0
  * @return      \EDD_Digital_Badge The one true EDD_Digital_Badge
  */
 function EDD_Digital_Badge_load() {
@@ -198,14 +184,6 @@ function EDD_Digital_Badge_load() {
 		return EDD_Digital_Badge::instance();
 	}
 }
-
-/**
- * The activation hook is called outside of the singleton because WordPress doesn't
- * register the call from within the class hence, needs to be called outside and the
- * function also needs to be static.
- */
-register_activation_hook( __FILE__, array( 'EDD_Digital_Badge', 'activation' ) );
-
 
 add_action( 'plugins_loaded', 'EDD_Digital_Badge_load' );
 

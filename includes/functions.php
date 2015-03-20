@@ -1,8 +1,16 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	return; // Silence is Golden
+}
 
+/**
+ * Register saving the settings
+ *
+ * @since  1.0
+ * @param  array $fields The array of settings to save
+ * @return array         Array with our settings added
+ */
 function edd_db_register_metabox_input( $fields ) {
 	$fields[] = '_edd_db_display_badge';
 
@@ -14,6 +22,13 @@ function edd_db_register_metabox_input( $fields ) {
 }
 add_filter( 'edd_metabox_fields_save', 'edd_db_register_metabox_input', 10, 1 );
 
+/**
+ * Display the checkboxes on the download edit screen
+ *
+ * @since  1.0
+ * @param  int $post_id The Post ID being edited
+ * @return string           Output of the string of settings
+ */
 function edd_db_display_metbox_input( $post_id ) {
 	if ( empty( $post_id ) ) {
 		return;
@@ -35,30 +50,61 @@ function edd_db_display_metbox_input( $post_id ) {
 }
 add_action( 'edd_meta_box_settings_fields', 'edd_db_display_metbox_input', 10, 1 );
 
+/**
+ * Return the digital badge with the html wrapper
+ *
+ * @since  1.0
+ * @return string The full string return of the digital badge
+ */
 function edd_db_badge_string() {
 	$string = '<span class="edd-db-badge">' . edd_db_get_badge_string() . '</span>';
 
 	return apply_filters( 'edd_db_badge_string', $string );
 }
 
+/**
+ * Get the digital badge string, without the html wrapper
+ *
+ * @since  1.0
+ * @return string The digital badge string
+ */
 function edd_db_get_badge_string() {
 	$badge_text = edd_get_option( 'EDD_Digital_Badge_badge_text', '[' . __( 'digital', 'edd-db-txt' ) . ']' );
 
 	return apply_filters( 'edd_db_default_badge_string', $badge_text );
 }
 
+/**
+ * Return the subscription badge with the html wrapper
+ *
+ * @since  1.0
+ * @return string The full string return of the subscription abdge
+ */
 function edd_db_subscription_string() {
 	$string = '<span class="edd-db-badge">' . edd_db_get_subscription_string() . '</span>';
 
 	return apply_filters( 'edd_db_badge_string', $string );
 }
 
+/**
+ * Get the subscription badge string without the wrapper
+ *
+ * @since  1.0
+ * @return string The subscription badge string
+ */
 function edd_db_get_subscription_string() {
 	$badge_text = edd_get_option( 'EDD_Digital_Badge_subscription_text', '[' . __( 'subscription', 'edd-db-txt' ) . ']' );
 
 	return apply_filters( 'edd_db_default_subscription_string', $badge_text );
 }
 
+/**
+ * Is the download supposed to have a digial badge
+ *
+ * @since  1.0
+ * @param  integer $download_id The Download ID
+ * @return bool                 If this download gets the digital badge
+ */
 function edd_db_is_digital_download( $download_id = 0 ) {
 	if ( empty( $download_id ) ) {
 		return false;
@@ -71,6 +117,13 @@ function edd_db_is_digital_download( $download_id = 0 ) {
 	return apply_filters( 'edd_db_is_digital_download', $is_digital, $download_id );
 }
 
+/**
+ * Is the downlaod supposed to have a subscription badge
+ *
+ * @since  1.0
+ * @param  integer $download_id The Download ID
+ * @return bool                 If this download gets the subscription adge
+ */
 function edd_db_is_subscription_download( $download_id = 0 ) {
 	if ( empty( $download_id ) ) {
 		return false;
@@ -83,6 +136,14 @@ function edd_db_is_subscription_download( $download_id = 0 ) {
 	return apply_filters( 'edd_db_is_subscription_download', $is_subscription, $download_id );
 }
 
+/**
+ * Append the title of the download with the appropriate badges
+ *
+ * @since  1.0
+ * @param  string $title   The current post title
+ * @param  int    $post_id The post ID
+ * @return string          The string with any badges appended
+ */
 function edd_db_append_title( $title, $post_id ) {
 	if ( is_admin() || 'download' !== get_post_type( $post_id ) || edd_is_checkout() ) {
 		return $title;
@@ -106,6 +167,13 @@ function edd_db_append_title( $title, $post_id ) {
 }
 add_filter( 'the_title', 'edd_db_append_title', 10, 2 );
 
+/**
+ * Add the badges to the checkout
+ *
+ * @since  1.0
+ * @param  array $item The Cart Item array
+ * @return void
+ */
 function edd_db_add_badge_column_checkout( $item ) {
 	$is_digital      = edd_db_is_digital_download( $item['id'] );
 	$is_subscription = edd_db_is_subscription_download( $item['id'] );
@@ -128,6 +196,12 @@ function edd_db_add_badge_column_checkout( $item ) {
 }
 add_action( 'edd_checkout_table_body_last', 'edd_db_add_badge_column_checkout', 99, 1 );
 
+/**
+ * Add the column to the checkout
+ *
+ * @since  1.0
+ * @return void
+ */
 function edd_db_add_badge_column_checkout_header() {
 	echo '<th class="edd_cart_badges">' . __( 'Notes', 'edd' ) . '</th>';
 }

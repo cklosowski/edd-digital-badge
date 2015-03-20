@@ -2,7 +2,7 @@
 /**
  * Load frontend scripts
  *
- * @since       1.0.0
+ * @since       1.0
  * @return      void
  */
 function edd_db_load_scripts( $hook ) {
