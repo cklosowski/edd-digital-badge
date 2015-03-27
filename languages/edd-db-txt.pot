@@ -1,0 +1,80 @@
+# Copyright (C) 2015 Easy Digital Downloads - Digital Badge
+# This file is distributed under the same license as the Easy Digital Downloads - Digital Badge package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Digital Downloads - Digital Badge 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-digital-badge\n"
+"POT-Creation-Date: 2015-03-27 09:58:28+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: edd-digital-badge.php:143
+msgid "Digital Badge Settings"
+msgstr ""
+
+#: edd-digital-badge.php:144
+msgid "Configure Digital Badge Settings"
+msgstr ""
+
+#: edd-digital-badge.php:149
+msgid "Download Badge Text"
+msgstr ""
+
+#: edd-digital-badge.php:150
+msgid "The text string you want to show by products marked as digital"
+msgstr ""
+
+#: edd-digital-badge.php:159
+msgid "Subscription Badge Text"
+msgstr ""
+
+#: edd-digital-badge.php:160
+msgid "The text string you want to show by products marked as subscriptions"
+msgstr ""
+
+#: includes/functions.php:39
+msgid "Product Badges"
+msgstr ""
+
+#: includes/functions.php:41
+msgid "Display an indication that the product is fulfilled via download"
+msgstr ""
+
+#: includes/functions.php:46
+msgid "Display an indication that the product is a subscription"
+msgstr ""
+
+#: includes/functions.php:72
+msgid "digital"
+msgstr ""
+
+#: includes/functions.php:96
+msgid "subscription"
+msgstr ""
+
+#: includes/functions.php:206
+msgid "Notes"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Easy Digital Downloads - Digital Badge"
+msgstr ""
+
+#. #-#-#-#-#  edd-db-txt.pot (Easy Digital Downloads - Digital Badge 1.0)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  edd-db-txt.pot (Easy Digital Downloads - Digital Badge 1.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "https://easydigitaldownloads.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Identify products as digital and subscription"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Chris Klosowski / Easy Digital Downloads"
+msgstr ""
