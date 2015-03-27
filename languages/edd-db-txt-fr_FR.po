@@ -1,0 +1,86 @@
+# Copyright (C) 2015 Easy Digital Downloads - Digital Badge
+# This file is distributed under the same license as the Easy Digital Downloads - Digital Badge package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Digital Downloads - Digital Badge 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-digital-badge\n"
+"POT-Creation-Date: 2015-03-27 09:58:28+00:00\n"
+"PO-Revision-Date: 2015-03-27 11:10+0100\n"
+"Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
+"Language-Team: fxbenard | FxB <fx@fxbenard.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: edd-digital-badge.php:143
+msgid "Digital Badge Settings"
+msgstr "Réglages de Digital Badge"
+
+#: edd-digital-badge.php:144
+msgid "Configure Digital Badge Settings"
+msgstr "Configurer les paramètres de Digital Badge"
+
+#: edd-digital-badge.php:149
+msgid "Download Badge Text"
+msgstr "Texte du badge de téléchargement"
+
+#: edd-digital-badge.php:150
+msgid "The text string you want to show by products marked as digital"
+msgstr "Le texte que vous voulez afficher pour les produits marqués comme digitaux"
+
+#: edd-digital-badge.php:159
+msgid "Subscription Badge Text"
+msgstr "Texte du badge d'abonnement"
+
+#: edd-digital-badge.php:160
+msgid "The text string you want to show by products marked as subscriptions"
+msgstr "Le texte que vous voulez afficher pour les produits nécessitant un abonnnement"
+
+#: includes/functions.php:39
+msgid "Product Badges"
+msgstr "Product Badges"
+
+#: includes/functions.php:41
+msgid "Display an indication that the product is fulfilled via download"
+msgstr "Marquer ce produit disponible via un téléchargement"
+
+#: includes/functions.php:46
+msgid "Display an indication that the product is a subscription"
+msgstr "Marquer ce produit nécessitant un abonnement"
+
+#: includes/functions.php:72
+msgid "digital"
+msgstr "digital"
+
+#: includes/functions.php:96
+msgid "subscription"
+msgstr "abonnement"
+
+#: includes/functions.php:206
+msgid "Notes"
+msgstr "Notes"
+
+#. Plugin Name of the plugin/theme
+msgid "Easy Digital Downloads - Digital Badge"
+msgstr "Easy Digital Downloads - Digital Badge"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://easydigitaldownloads.com"
+msgstr "https://easydigitaldownloads.com"
+
+#. Description of the plugin/theme
+msgid "Identify products as digital and subscription"
+msgstr "Identifier les produits digitaux et ceux qui nécessitent un abonnement"
+
+#. Author of the plugin/theme
+msgid "Chris Klosowski / Easy Digital Downloads"
+msgstr "Chris Klosowski / Easy Digital Downloads"
+
+#, fuzzy
+#~ msgid "Configure Plugin Name Settings"
+#~ msgstr "Configuration des réglages des heures d'ouverture"
