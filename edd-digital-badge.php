@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Easy Digital Downloads - Digital Badge
-Plugin URI: https://easydigitaldownloads.com
+Plugin URI: https://easydigitaldownloads.com/downloads/digital-badge/
 Description: Identify products as digital and subscription
 Version: 1.0
-Author: Chris Klosowski / Easy Digital Downloads
+Author: Easy Digital Downloads
 Author URI: https://easydigitaldownloads.com
 Text Domain: edd-db-txt
 */
