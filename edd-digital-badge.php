@@ -141,7 +141,7 @@ if( !class_exists( 'EDD_Digital_Badge' ) ) {
 				array(
 					'id'    => 'EDD_Digital_Badge_settings',
 					'name'  => '<strong>' . __( 'Digital Badge Settings', 'edd-db-txt' ) . '</strong>',
-					'desc'  => __( 'Configure Plugin Name Settings', 'edd-db-txt' ),
+					'desc'  => __( 'Configure Digital Badge Settings', 'edd-db-txt' ),
 					'type'  => 'header',
 				),
 				array(
